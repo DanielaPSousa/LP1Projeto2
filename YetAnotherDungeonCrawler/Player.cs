@@ -13,4 +13,10 @@ public class Player
         AttackPower = attackPower; 
         Coins = 0;                 
     }
+
+    public void Move(Room newRoom)
+    {
+        CurrentRoom = newRoom;
+    }
+
 }
