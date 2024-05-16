@@ -19,13 +19,26 @@ public class Player
         CurrentRoom = newRoom;
     }
 
-      public void Attack(Enemy enemy)
+    public void Attack(Enemy enemy)
     {
         enemy.Health -= AttackPower;
         
         if (enemy.Health > 0)
         {
             Health -= enemy.AttackPower;
+        }
+    }
+
+    public void PickUpItem(Item item)
+    {
+        if (item is HealthPotion potion)
+        {
+            Health += potion.HealAmount; 
+        }
+        else if (item is SparklyChest chest)
+        {
+            Coins += chest.Coins; 
+            Console.WriteLine("Parabéns! Você conseguiu apanhar o Super Sparkly Chest!");
         }
     }
 
