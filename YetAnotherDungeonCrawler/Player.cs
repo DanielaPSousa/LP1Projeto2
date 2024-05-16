@@ -42,4 +42,9 @@ public class Player
         }
     }
 
+    public void GainCoins(int amount)
+    {
+        Coins += amount;
+    }
+
 }
