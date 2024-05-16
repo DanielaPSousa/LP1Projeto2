@@ -16,4 +16,15 @@ public abstract class Item
             HealAmount = healAmount;
         }
     }
+
+    public class SparklyChest : Item
+    {
+        public int Coins { get; private set; }
+
+        public SparklyChest(int coins) : base("Super Sparkly Chest")
+        {
+            Coins = coins;
+        }
+    }
+    
 }
