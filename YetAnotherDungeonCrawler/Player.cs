@@ -19,4 +19,14 @@ public class Player
         CurrentRoom = newRoom;
     }
 
+      public void Attack(Enemy enemy)
+    {
+        enemy.Health -= AttackPower;
+        
+        if (enemy.Health > 0)
+        {
+            Health -= enemy.AttackPower;
+        }
+    }
+
 }
