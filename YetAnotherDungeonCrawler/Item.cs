@@ -7,4 +7,13 @@ public abstract class Item
     {
         Name = name;
     }
+
+    public class HealthPotion : Item
+    {
+        public int HealAmount { get; set; }
+        public HealthPotion(int healAmount) : base("Health Potion")
+        {
+            HealAmount = healAmount;
+        }
+    }
 }
