@@ -57,10 +57,44 @@ public class Controller
     {
         consoleView.DisplayMessage("Welcome..You are a brave soul who wants to explore the old dungeon and get the treasures it contains.");
         DisplayCurrentRoom();
+        MainLoop();
     }
     private void DisplayCurrentRoom()
     {
         consoleView.DisplayRoomInfo(player.CurrentRoom);
+    }
+        private void MainLoop()
+    {
+        bool playing = true;
+        while (playing)
+        {
+            consoleView.DisplayMessage("What do you want to do? (move, attack, pickup, exit)");
+            string command = Console.ReadLine().ToLower();
+            switch (command)
+            {
+                case "move":
+                    MovePlayer();
+                    break;
+                case "attack":
+                    AttackEnemy();
+                    break;
+                case "pickup":
+                    PickUpItem();
+                    break;
+                case "exit":
+                    playing = false;
+                    break;
+                default:
+                    consoleView.DisplayMessage("Wrong bottom!!");
+                    break;
+            }
+            if (player.Health <= 0)
+            {
+                consoleView.DisplayMessage("You're dead. This is the end of the road...");
+                playing = false;
+            }
+        }
+        consoleView.DisplayMessage("Thank you for playing!!");
     }
 
     public void AttackEnemy()
