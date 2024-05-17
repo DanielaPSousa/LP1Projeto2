@@ -57,7 +57,7 @@ public class Controller
     {
         consoleView.DisplayMessage("Welcome..You are a brave soul who wants to explore the old dungeon and get the treasures it contains.");
         DisplayCurrentRoom();
-        MainLoop();
+        MainLoop(); 
     }
     private void DisplayCurrentRoom()
     {
@@ -94,7 +94,7 @@ public class Controller
                 playing = false;
             }
         }
-        consoleView.DisplayMessage("Thank you for playing!!");
+        consoleView.DisplayMessage("Logging off..Thank you for playing!");
     }
 
     public void AttackEnemy()
