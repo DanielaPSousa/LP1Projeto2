@@ -9,18 +9,18 @@ public class IView
 
     public void DisplayRoomInfo(Room room)
     {
-        Console.WriteLine($"You are in:  {room.Description}.");
+        Console.WriteLine($"You are in {room.Description}.");
         if (room.Enemy != null)
         {
-            Console.WriteLine("Há um inimigo aqui!");
+            Console.WriteLine("There is an enemy here!");
         }
         if (room.Item != null)
         {
-            Console.WriteLine("Há um item aqui!");
+            Console.WriteLine("There is a potion here!");
         }
         if (room.Treasure != null)
         {
-            Console.WriteLine("Há um Sparklychest aqui!");
+            Console.WriteLine("There is a Sparklychest here!");
         }
     }
 
