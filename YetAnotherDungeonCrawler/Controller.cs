@@ -56,7 +56,13 @@ public class Controller
     public void StartGame()
     {
         consoleView.DisplayMessage("Welcome..You are a brave soul who wants to explore the old dungeon and get the treasures it contains.");
+        DisplayCurrentRoom();
     }
+    private void DisplayCurrentRoom()
+    {
+        consoleView.DisplayRoomInfo(player.CurrentRoom);
+    }
+
     public void AttackEnemy()
     {
         if (player.CurrentRoom.Enemy != null)
