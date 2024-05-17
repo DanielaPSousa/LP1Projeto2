@@ -1,6 +1,6 @@
 using System;
 
-public class ConsoleView
+public class IView
 {
     public void DisplayMessage(string message)
     {

@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 
-public class GameController
+public class Controller
 {
     private Player player;
     private List<Room> dungeon;
-    private ConsoleView consoleView;
+    private IView consoleView;
 
-    public GameController()
+    public Controller()
     {
         consoleView = new ConsoleView();
         InitializeGame();
