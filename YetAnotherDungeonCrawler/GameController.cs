@@ -3,6 +3,15 @@ using System.Collections.Generic;
 
 public class GameController
 {
+    private Player player;
+    private List<Room> dungeon;
+    private ConsoleView consoleView;
+
+    public GameController()
+    {
+        consoleView = new ConsoleView();
+        InitializeGame();
+    }
     public void AttackEnemy()
     {
         if (player.CurrentRoom.Enemy != null)
