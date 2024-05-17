@@ -63,7 +63,7 @@ public class Controller
     {
         consoleView.DisplayRoomInfo(player.CurrentRoom);
     }
-        private void MainLoop()
+    private void MainLoop()
     {
         bool playing = true;
         while (playing)
@@ -96,6 +96,27 @@ public class Controller
         }
         consoleView.DisplayMessage("Logging off..Thank you for playing!");
     }
+    public void MovePlayer()
+    {
+        if (player.CurrentRoom.Enemy != null && player.CurrentRoom.Enemy.Health > 0)
+        {
+            consoleView.DisplayMessage("You can't leave until the enemy is defeated!");
+            return;
+        }
+
+        consoleView.DisplayMessage("Where do you want to move? " + string.Join(", ", player.CurrentRoom.Exits.Keys));
+        string direction = Console.ReadLine().ToLower();
+        if (player.CurrentRoom.Exits.ContainsKey(direction))
+        {
+            Room newRoom = player.CurrentRoom.Exits[direction];
+            player.Move(newRoom);
+            DisplayCurrentRoom();
+        }
+        else
+        {
+            consoleView.DisplayMessage("Wrong direction!");
+        }
+    }
 
     public void AttackEnemy()
     {
@@ -121,28 +142,24 @@ public class Controller
     }
 
     public void PickUpItem()
-{
+    {
 
-    if (player.CurrentRoom.Item != null)
-    {
-        player.PickUpItem(player.CurrentRoom.Item);
-        
-        consoleView.DisplayMessage("You picked up an item");
-        
-        player.CurrentRoom.Item = null;
-    }
-    else if (player.CurrentRoom.Treasure != null)
-    {
-        player.PickUpItem(player.CurrentRoom.Treasure);
-        
-        consoleView.DisplayMessage("Congratulations! You managed to get the Super Sparkly Chest!");
-        
-        player.CurrentRoom.Treasure = null;
-    }
-    else
-    {
-        consoleView.DisplayMessage("There are no items in this room");
-    }
-    consoleView.DisplayPlayerInfo(player);
+        if (player.CurrentRoom.Item != null)
+        {
+            player.PickUpItem(player.CurrentRoom.Item);
+            consoleView.DisplayMessage("You picked up an item");
+            player.CurrentRoom.Item = null;
+        }
+        else if (player.CurrentRoom.Treasure != null)
+        {
+            player.PickUpItem(player.CurrentRoom.Treasure);
+            consoleView.DisplayMessage("Congratulations! You managed to get the Super Sparkly Chest!");
+            player.CurrentRoom.Treasure = null;
+        }
+        else
+        {
+            consoleView.DisplayMessage("There are no items in this room");
+        }
+        consoleView.DisplayPlayerInfo(player);
     }
 }
