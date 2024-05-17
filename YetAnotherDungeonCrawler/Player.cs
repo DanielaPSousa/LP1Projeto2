@@ -38,7 +38,6 @@ public class Player
         else if (item is SparklyChest chest)
         {
             Coins += chest.Coins; 
-            Console.WriteLine("Parabéns! Você conseguiu apanhar o Super Sparkly Chest!");
         }
     }
 
