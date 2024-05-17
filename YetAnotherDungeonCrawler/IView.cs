@@ -9,7 +9,7 @@ public class IView
 
     public void DisplayRoomInfo(Room room)
     {
-        Console.WriteLine($"Você está na {room.Description}.");
+        Console.WriteLine($"You are in:  {room.Description}.");
         if (room.Enemy != null)
         {
             Console.WriteLine("Há um inimigo aqui!");
