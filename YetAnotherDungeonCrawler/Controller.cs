@@ -9,7 +9,7 @@ public class Controller
 
     public Controller()
     {
-        consoleView = new ConsoleView();
+        consoleView = new IView();
         InitializeGame();
     }
     private void InitializeGame()
@@ -98,6 +98,6 @@ public class Controller
     {
         consoleView.DisplayMessage("There are no items in this room");
     }
-
     consoleView.DisplayPlayerInfo(player);
+    }
 }
