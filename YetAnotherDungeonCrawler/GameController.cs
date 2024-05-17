@@ -10,18 +10,18 @@ public class GameController
             player.Attack(player.CurrentRoom.Enemy);
             if (player.CurrentRoom.Enemy.Health <= 0)
             {
-                consoleView.DisplayMessage("Você derrotou o inimigo!");
+                consoleView.DisplayMessage("You defeated the enemy good job!");
                 player.GainCoins(10);
                 player.CurrentRoom.Enemy = null;
             }
             else
             {
-                consoleView.DisplayMessage("O inimigo ainda está vivo.");
+                consoleView.DisplayMessage("The enemy is still alive..");
             }
         }
         else
         {
-            consoleView.DisplayMessage("Não há inimigos nesta sala.");
+            consoleView.DisplayMessage("There are no enemies in this room");
         }
         consoleView.DisplayPlayerInfo(player);
     }
@@ -33,7 +33,7 @@ public class GameController
     {
         player.PickUpItem(player.CurrentRoom.Item);
         
-        consoleView.DisplayMessage("Você apanhou o item.");
+        consoleView.DisplayMessage("You picked up an item");
         
         player.CurrentRoom.Item = null;
     }
@@ -41,13 +41,13 @@ public class GameController
     {
         player.PickUpItem(player.CurrentRoom.Treasure);
         
-        consoleView.DisplayMessage("Parabéns! Você conseguiu apanhar o Super Sparkly Chest!");
+        consoleView.DisplayMessage("Congratulations! You managed to get the Super Sparkly Chest!");
         
         player.CurrentRoom.Treasure = null;
     }
     else
     {
-        consoleView.DisplayMessage("Não há itens nesta sala.");
+        consoleView.DisplayMessage("There are no items in this room");
     }
 
     consoleView.DisplayPlayerInfo(player);
