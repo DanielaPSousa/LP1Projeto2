@@ -52,6 +52,11 @@ public class Controller
         player.CurrentRoom = room1;
         dungeon = new List<Room> { room1, room2, room3, room4, room5, room6, room7, room8, room9}; 
     }
+    
+    public void StartGame()
+    {
+        consoleView.DisplayMessage("Welcome..You are a brave soul who wants to explore the old dungeon and get the treasures it contains.");
+    }
     public void AttackEnemy()
     {
         if (player.CurrentRoom.Enemy != null)
