@@ -13,5 +13,10 @@ public class Room
     {
         Description = description;
         Exits = new Dictionary<string, Room>();
-    }   
+    }  
+
+    public void SetExit(string direction, Room neighbor)
+    {
+        Exits[direction] = neighbor;
+    } 
 }
