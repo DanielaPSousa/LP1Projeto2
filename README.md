@@ -95,3 +95,27 @@ classDiagram
     Controller "1" o-- "2..*" Room
     IView "1" <-- "1" Controller : User Interface
 ```
+
+### Diagrama UML do Mapa do Jogo
+
+```mermaid
+---
+title: GameMap
+author: Alexandre Almeida
+---
+classDiagram
+    2 (Enemy room) <|-- 1 (Tutorial room)
+    1 (Tutorial room) <|-- 2 (Enemy room)
+    3 (Potion room) <|-- 2 (Enemy room)
+    2 (Enemy room) <|-- 3 (Potion room)
+    8 (Empty room) <|-- 2 (Enemy room)
+    2 (Enemy room) <|-- 8 (Empty room)
+    4 (Enemy room) <|-- 3 (Potion room)
+    3 (Potion room) <|-- 4 (Enemy room)
+    9 (Empty room) <|-- 4 (Enemy room)
+    4 (Enemy room) <|-- 9 (Empty room)
+    5 (Potion room) <|-- 4 (Enemy room)
+    4 (Enemy room) <|-- 5 (Potion room)
+    6 (Boss room) <|-- 5 (Potion room)
+    7 (Secret room) <|-- 6 (Boss room)
+```
