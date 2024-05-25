@@ -23,6 +23,8 @@ Yet Another Dungeon Crawler é um explorador de masmorras, onde o jogador explor
     * Class Item
     * Class Room
 
+Link do repositório: https://github.com/DanielaPSousa/LP1Projeto2
+
 ### Arquitetura da Solução do Projeto
 Nesta parte do relatório, iremos decrever lista de ficheiros indicando e descrevendo as funções mais importantes.
 
