@@ -11,7 +11,6 @@ public class Program
     public static void Main(string[] args)
     {
         Controller gameController = new Controller();
-        IView view = new IView();
-        gameController.StartGame(view);
+        gameController.StartGame();
     }
 }

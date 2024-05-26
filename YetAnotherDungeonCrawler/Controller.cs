@@ -9,11 +9,14 @@ public class Controller
     private Player player;
     private List<Room> dungeon;
     private IView consoleView;
+    private int score;
+    private int moves;
     /// <summary>
     /// Constructor of the Controller class that calls the initialization function.
     /// </summary>
     public Controller()
     {
+        consoleView = new IView();
         InitializeGame();
     }
     /// <summary>
@@ -22,6 +25,8 @@ public class Controller
     private void InitializeGame()
     {
         player = new Player(100, 10);
+        score = 0;
+        moves = 0;
 
         Room room1 = new Room("Starting room! It seems like many have entered and never returned...");
         Room room2 = new Room("Enemy room! Inside this room, illuminated by only two torches, you realise that many have fallen here.");
@@ -63,11 +68,11 @@ public class Controller
     /// Function that starts the game by setting the user interface, welcoming the player, and calling the game's loop function.
     /// </summary>
     /// <param name="view">Instance of the user interface class.</param>
-    public void StartGame(IView view)
+    public void StartGame()
     {
-        consoleView = view;
-        consoleView.DisplayMessage("Welcome, you are a brave soul who wants to explore an old dungeon and find the treasures it might contain.");
+        consoleView.DisplayMessage("Welcome, you are a brave soul who wants to explore an old dungeon and find the treasures it might contain.", ConsoleColor.Cyan);
         DisplayCurrentRoom();
+        consoleView.DisplayScoreAndMoves(score, moves);
         MainLoop(); 
     }
     /// <summary>
@@ -102,14 +107,15 @@ public class Controller
                     playing = false;
                     break;
                 default:
-                    consoleView.DisplayMessage("Wrong bottom!!");
+                    consoleView.DisplayMessage("Wrong bottom!!", ConsoleColor.Red);
                     break;
             }
             if (player.Health <= 0)
             {
-                consoleView.DisplayMessage("You're been defeated. This is the end of the road...");
+                consoleView.DisplayMessage("You're been defeated. This is the end of the road...", ConsoleColor.Red);
                 playing = false;
             }
+            consoleView.DisplayScoreAndMoves(score, moves);
         }
         consoleView.DisplayMessage("Logging off..Thank you for playing!");
     }
@@ -120,21 +126,22 @@ public class Controller
     {
         if (player.CurrentRoom.Enemy != null && player.CurrentRoom.Enemy.Health > 0)
         {
-            consoleView.DisplayMessage("You can't leave until the enemy is defeated!");
+            consoleView.DisplayMessage("You can't leave until the enemy is defeated!", ConsoleColor.Red);
             return;
         }
 
-        consoleView.DisplayMessage("Where do you want to go? Options: " + string.Join(", ", player.CurrentRoom.Exits.Keys));
+        consoleView.DisplayMessage("Where do you want to go? Options: " + string.Join(", ", player.CurrentRoom.Exits.Keys), ConsoleColor.Magenta);
         string direction = Console.ReadLine().ToLower();
         if (player.CurrentRoom.Exits.ContainsKey(direction))
         {
             Room newRoom = player.CurrentRoom.Exits[direction];
             player.Move(newRoom);
+            moves++;
             DisplayCurrentRoom();
         }
         else
         {
-            consoleView.DisplayMessage("There's nothing but a wall that way!");
+            consoleView.DisplayMessage("There's nothing but a wall that way!", ConsoleColor.Red);
         }
     }
     /// <summary>
@@ -147,18 +154,19 @@ public class Controller
             player.Attack(player.CurrentRoom.Enemy);
             if (player.CurrentRoom.Enemy.Health <= 0)
             {
-                consoleView.DisplayMessage("You defeated the enemy! As it falls, you breathe a sigh of relief. Good job!");
+                consoleView.DisplayMessage("You defeated the enemy! As it falls, you breathe a sigh of relief. Good job!", ConsoleColor.Green);
+                score += 10;
                 player.GainCoins(10);
                 player.CurrentRoom.Enemy = null;
             }
             else
             {
-                consoleView.DisplayMessage("The enemy is still alive, and attacks!");
+                consoleView.DisplayMessage("The enemy is still alive, and attacks!", ConsoleColor.Red);
             }
         }
         else
         {
-            consoleView.DisplayMessage("There are no enemies in this room.");
+            consoleView.DisplayMessage("There are no enemies in this room.", ConsoleColor.Gray);
         }
         consoleView.DisplayPlayerInfo(player);
     }
@@ -171,18 +179,20 @@ public class Controller
         if (player.CurrentRoom.Item != null)
         {
             player.PickUpItem(player.CurrentRoom.Item);
-            consoleView.DisplayMessage("You drank the potion. Health restored!");
+            consoleView.DisplayMessage("You drank the potion. Health restored!", ConsoleColor.Green);
+            score += 5;
             player.CurrentRoom.Item = null;
         }
         else if (player.CurrentRoom.Treasure != null)
         {
             player.PickUpItem(player.CurrentRoom.Treasure);
-            consoleView.DisplayMessage("Congratulations! You managed to find the rare Super Sparkly Chest!");
+            consoleView.DisplayMessage("Congratulations! You managed to find the rare Super Sparkly Chest!", ConsoleColor.Yellow);
+            score += 50;
             player.CurrentRoom.Treasure = null;
         }
         else
         {
-            consoleView.DisplayMessage("There are no items in this room.");
+            consoleView.DisplayMessage("There are no items in this room.", ConsoleColor.Gray);
         }
         consoleView.DisplayPlayerInfo(player);
     }
