@@ -1,23 +1,24 @@
 # Yet Another Dungeon Crawler
 
-## Alexandre Almeida (22302190), Daniela Peixoto (22305364), Daniela Sousa (22307091)
+### Alexandre Almeida (22302190), Daniela Peixoto (22305364), Daniela Sousa (22307091)
 
-### Introdução
+## Introdução
 Yet Another Dungeon Crawler é um explorador de masmorras, onde o jogador explora um conjunto de masmorras, enfrentando inimigos enquanto procura por tesouros. Em cada uma das salas, o jogador pode encontrar inimigos para enfrentar ou items que o ajudarão. O jogo apenas acaba quando o jogador morre os sai da masmorra, regressando à primeira sala.
 
-### Lista de Tarefas Individuais
+## Lista de Tarefas Individuais
 * Alexandre Almeida
     * Desenvolver a interface do utilizador.
     * Comentar todo o código desenvolvido (XML).
     * Compor este relatório, com linguagem markup adequada.
     * Desenvolver um diagrama UML, utilizando o Mermaid, que apresenta a arquitetura do projeto.
-    * Classe IView.
+    * Class IView.
 * Daniela Peixoto
-    * Classe Enemy
-    * Classe Player
-    * Classe Controller
-    * Classe Item
+    * Class Enemy
+    * Class Player
+    * Class Controller
+    * Class Item
 * Daniela Sousa
+    * Criação do Repositório 
     * Class Controller
     * Class Program
     * Class Item
@@ -25,10 +26,10 @@ Yet Another Dungeon Crawler é um explorador de masmorras, onde o jogador explor
 
 Link do repositório: https://github.com/DanielaPSousa/LP1Projeto2
 
-### Arquitetura da Solução do Projeto
+## Arquitetura da Solução do Projeto
 Nesta parte do relatório, iremos decrever lista de ficheiros indicando e descrevendo as funções mais importantes.
 
-#### Lista de Ficheiros
+## Lista de Ficheiros
 * Program.cs - 
 Contém a classe **Program**, que implementa a função principal, a partir da qual o programa começa a ser executado.
     * ```public static void Main(string[] args)```
@@ -78,12 +79,11 @@ Classe que implementa uma sala que pode conter inimigos e itens no seu interior.
 Construtor da classe da sala que armazena a descrição da divisão e cria uma estrutura de memória para as possíveis saídas.
 Função que adiciona uma nova saída a uma determinada sala.
 
-### Diagrama UML da Solução do Projeto
+## Diagrama UML da Solução do Projeto
 
 ```mermaid
 ---
 title: YetAnotherDungeonCrawler
-author: Alexandre Almeida
 ---
 classDiagram
     Item <|-- HealthPotion
@@ -98,12 +98,11 @@ classDiagram
     IView "1" <-- "1" Controller : User Interface
 ```
 
-### Diagrama UML do Mapa do Jogo
+## Diagrama UML do Mapa do Jogo
 
 ```mermaid
 ---
 title: GameMap
-author: Alexandre Almeida
 ---
 classDiagram
     2 Enemy room <|-- 1 Tutorial room
@@ -121,3 +120,6 @@ classDiagram
     6 Boss room <|-- 5 Potion room
     7 Secret room <|-- 6 Boss room
 ```
+## Referências
+* Para ajudar no código, foi utilizado um guia de [C# Keywords](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/), da Microsoft.
+* Utilizamos o ChatGPT para termos uma direção de como fazer o UI e como meter também a contagem dos moves e os scores que o jogador faz. 
